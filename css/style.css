@@ -1,0 +1,51 @@
+body {
+  font-family: "SF Digital Readout Heavy";
+  color: #f1803b;
+  font-weight: bold;
+  letter-spacing: 5px;
+  background-color: black;
+}
+
+h1 {
+  font-size: 3.4em;
+}
+
+h2 {
+  font-size: 2.3em;
+}
+
+h3 {
+  font-size: 1.8em;
+}
+
+label {
+  font-size: 2em;
+}
+
+
+.container {
+  background-image: url(../pic/itcroud.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+
+}
+
+.form-control {
+    letter-spacing: 2px;
+  max-width: 600px;
+}
+
+@media screen and (min-width:500px) {
+  h1 {
+    font-size: 5em;
+  }
+
+  h2 {
+    font-size: 2.7em;
+  }
+
+  h3 {
+    font-size: 2em;
+  }
+}
