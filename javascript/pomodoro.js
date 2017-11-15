@@ -9,20 +9,22 @@ var work = document.querySelector(".work"),
     breakDown = document.querySelector(".break-down"),
     sound = document.querySelector("select"),
     playM = document.querySelector(".play"),
+    intervals = document.querySelector(".intervals"),
     placeHolderWork = 25,
     placeHolderBreak = 5,
     intervalHolder,
     totalTime,
     toggle = 0,
     itCroudSounds = {
-      "theme" : "../sounds/The_IT_Crowd_Opening_Theme.mp3",
-      "Moss Rington" : "../sounds/Moss_ringtone.mp3",
-      "I Lie" : '../sounds/I_lie.mp3',
-      "New Emergency Number" : '../sounds/New_Emergency_Number.mp3',
-      "80 million people" : '../sounds/80_million_people.mp3',
-      "It cant be done" : '../sounds/It_cant_be_done.mp3',
-      "Forcing unexpected reboot" : '../sounds/Forcing_unexpected_reboot.mp3'
+      "theme" : "https://raw.githubusercontent.com/Hartecode/theItCrowdPomodoro/master/sounds/The_IT_Crowd_Opening_Theme.mp3",
+      "Moss Rington" : "https://raw.githubusercontent.com/Hartecode/theItCrowdPomodoro/master/sounds/Moss_ringtone.mp3",
+      "I Lie" : 'https://raw.githubusercontent.com/Hartecode/theItCrowdPomodoro/master/sounds/I_lie.mp3',
+      "New Emergency Number" : 'https://raw.githubusercontent.com/Hartecode/theItCrowdPomodoro/master/sounds/New_Emergency_Number.mp3',
+      "80 million people" : 'https://raw.githubusercontent.com/Hartecode/theItCrowdPomodoro/master/sounds/80_million_people.mp3',
+      "It cant be done" : 'https://raw.githubusercontent.com/Hartecode/theItCrowdPomodoro/master/sounds/It_cant_be_done.mp3',
+      "Forcing unexpected reboot" : 'https://raw.githubusercontent.com/Hartecode/theItCrowdPomodoro/master/sounds/Forcing_unexpected_reboot.mp3'
     };
+
 
 work.textContent = placeHolderWork;
 breakTime.textContent = placeHolderBreak;
@@ -65,6 +67,7 @@ breakDown.addEventListener("click", function(){
 //start button
 start.addEventListener("click", function(){
   haltInterval();
+  intervals.textContent = "Working...";
   startTimer(minToSec(placeHolderWork), timer);
 });
 
@@ -76,15 +79,16 @@ reset.addEventListener("click", function(){
 
 //play music
 playM.addEventListener("click", function(){
-  var audio = new Audio(itCroudSounds[sound.options[sound.selectedIndex].textContent]);
-  audio.play();
+  audioPlay();
 });
 
 //updates the
 function upDateTimer(){
+  intervals.textContent = "Session";
   var hours = Math.floor(placeHolderWork/60);
   var min = placeHolderWork - (hours * 60);
   formateTime(hours, min, 0);
+
 }
 
 //formating the timer
@@ -122,9 +126,12 @@ function startTimer(duration) {
 
         if (totalTime === 0) {
             haltInterval();
+            audioPlay();
             change();
+        } else {
+          totalTime--;
         }
-        totalTime--;
+
     }, 1000);
 }
 
@@ -135,14 +142,19 @@ function minToSec(min) {
 
 //switch back and forth from work to break. An alarm is played at the end of every count down
 function change(){
-  var audio = new Audio(itCroudSounds[sound.options[sound.selectedIndex].textContent]);
   if(toggle === 0){
     toggle++;
-    audio.play();
+    intervals.textContent = "Break!";
     startTimer(minToSec(placeHolderBreak));
   } else {
     toggle--;
-    audio.play();
+    intervals.textContent = "Working...";
     startTimer(minToSec(placeHolderWork));
   }
+}
+
+//audio
+function audioPlay() {
+   var audio = new Audio(itCroudSounds[sound.options[sound.selectedIndex].textContent]);
+   return audio.play();
 }
