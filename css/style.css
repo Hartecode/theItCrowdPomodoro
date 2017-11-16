@@ -7,11 +7,11 @@ body {
 }
 
 h1 {
-  font-size: 3.4em;
+  font-size: 3em;
 }
 
 h2 {
-  font-size: 2.3em;
+  font-size: 2em;
 }
 
 h3 {
@@ -19,7 +19,7 @@ h3 {
 }
 
 label {
-  font-size: 2em;
+  font-size: 1.5em;
 }
 
 
@@ -34,6 +34,23 @@ label {
 .form-control {
     letter-spacing: 2px;
   max-width: 600px;
+}
+@media screen and (min-width:400px) {
+  h1 {
+    font-size: 4em;
+  }
+
+  h2 {
+    font-size: 2.3em;
+  }
+
+  h3 {
+    font-size: 2em;
+  }
+
+  label {
+    font-size: 2em;
+  }
 }
 
 @media screen and (min-width:500px) {
